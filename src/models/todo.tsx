@@ -11,6 +11,6 @@ const todSchema=new Schema<ITodo>({
     
     description:{type:String,required:true},
     
-})
+},{timestamps:true})
 
 export const Todo= models.Todo || model<ITodo>('Todo',todSchema)

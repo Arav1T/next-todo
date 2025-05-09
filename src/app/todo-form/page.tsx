@@ -1,32 +1,28 @@
 'use client';
 
-
 import { useRouter } from 'next/navigation';
+// import { useTodos } from '@/context/TodoContext';
 import { useState } from 'react';
 
 
-export default function TodoForm({data}) {
-  console.log("hbfh",data)
-  const router= useRouter()
-  const [input, setInput] = useState(data.description);
-  // const { addTodo } = useTodos();
+export default function TodoForm() {
+    const router= useRouter()
+  const [input, setInput] = useState('');
+//   const { addTodo } = useTodos();
 
   const handleSubmit =async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
-    const res=await fetch(`http://localhost:3000/api/todo/${data._id}`,{
-      method:"PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body:JSON.stringify(input)
-    })
-    if(res.ok){
-      // router.refresh();
-      router.push("/");
-    }
     // addTodo(input);
+    const data= fetch('/api/todo',{
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ description:input }),
+    })
     setInput('');
+    router.push('/')
   };
 
   return (
@@ -38,9 +34,8 @@ export default function TodoForm({data}) {
         placeholder="Enter task"
       />
       <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Update
+        Add
       </button>
     </form>
-   
   );
 }

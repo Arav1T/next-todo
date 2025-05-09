@@ -17,6 +17,7 @@ export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     const res = await fetch('/api/todo');
     const data = await res.json();
     setTodos(data);
+    console.log(data)
   };
 
   const addTodo = async (description: string) => {

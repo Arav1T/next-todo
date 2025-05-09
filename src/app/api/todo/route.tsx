@@ -25,3 +25,11 @@ export async function POST(req: NextRequest) {
     }
     
 }
+export async function DELETE(req:NextRequest) {
+    const id = req.nextUrl.searchParams.get('id')
+    await dbConnect()
+    const data = await Todo.findByIdAndDelete(id)
+    return NextResponse.json({message:"deleted sussfully", data},{status:201})
+
+    
+}
