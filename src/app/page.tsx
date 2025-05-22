@@ -102,7 +102,7 @@ export default function Home() {
     //   </footer>
     // </div>
     <>
-    <div>
+    <div className="bg-gradient-to-br from-pink-300 to-pink-900 ">
       {/* <TodoForm/> */}
       <TodoList/>
     </div>
